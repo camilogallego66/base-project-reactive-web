@@ -1,0 +1,33 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 01-create-master-table
+      author: cgallego
+      changes:
+        - createTable:
+            schema: public
+            tableName: master
+            columns:
+              - column:
+                  name: ID
+                  type: int
+                  autoIncrement: true
+                  startWith: 1
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: MASTER_CODE
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: DESCRIPTION
+                  type: varchar(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: MASTER_CATEGORY
+                  type: varchar(250)
+                  constraints:
+                    nullable: false
