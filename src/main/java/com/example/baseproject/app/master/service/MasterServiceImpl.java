@@ -5,6 +5,7 @@ import com.example.baseproject.app.master.mapper.MasterMapper;
 import com.example.baseproject.app.master.repository.MasterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
@@ -27,5 +28,11 @@ public class MasterServiceImpl implements  MasterService {
     @Override
     public Mono<MasterDTO> save(MasterDTO masterDTO) {
         return masterRepository.save(masterMapper.dtoToModel(masterDTO)).map(master -> masterMapper.modelToDto(master));
+    }
+
+    @Override
+    public Flux<MasterDTO> getByCategory(String category) {
+        return masterRepository.findMastersByMasterCategoryOrderByDescription(category)
+                .map(masters -> masterMapper.modelToDto(masters));
     }
 }

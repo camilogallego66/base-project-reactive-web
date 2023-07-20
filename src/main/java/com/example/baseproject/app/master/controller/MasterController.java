@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
@@ -19,6 +20,16 @@ public class MasterController {
     @GetMapping("/master")
     public Mono<List<MasterDTO>> getAll() {
         return masterService.getAll();
+    }
+
+    @GetMapping("/master/{id}")
+    public Mono<MasterDTO> getById(@PathVariable Long id) {
+        return masterService.getById(id);
+    }
+
+    @GetMapping("/master/masterCategory/{category}")
+    public Flux<MasterDTO> getById(@PathVariable String category) {
+        return masterService.getByCategory(category);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
