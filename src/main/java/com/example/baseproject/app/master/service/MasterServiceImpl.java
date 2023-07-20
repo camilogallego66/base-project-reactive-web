@@ -1,6 +1,7 @@
 package com.example.baseproject.app.master.service;
 
 import com.example.baseproject.app.master.dto.MasterDTO;
+import com.example.baseproject.app.master.entity.Master;
 import com.example.baseproject.app.master.mapper.MasterMapper;
 import com.example.baseproject.app.master.repository.MasterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class MasterServiceImpl implements  MasterService {
         return masterRepository.findAll().collectList().map(masters -> masterMapper.modelToList(masters));
     }
     @Override
-    public Mono<MasterDTO> save(MasterDTO masterDTO) {
-        return masterRepository.save(masterMapper.dtoToModel(masterDTO)).map(master -> masterMapper.modelToDto(master));
+    public Mono<Master> save(Master masterDTO) {
+        return masterRepository.save(masterDTO);
     }
 
     @Override

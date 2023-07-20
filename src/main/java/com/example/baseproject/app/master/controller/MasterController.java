@@ -1,6 +1,7 @@
 package com.example.baseproject.app.master.controller;
 
 import com.example.baseproject.app.master.dto.MasterDTO;
+import com.example.baseproject.app.master.entity.Master;
 import com.example.baseproject.app.master.service.MasterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,7 @@ public class MasterController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/master")
-    public Mono<MasterDTO> save(@Validated @RequestBody final MasterDTO masterDTO) {
+    public Mono<Master> save(@Validated @RequestBody final Master masterDTO) {
         return masterService.save(masterDTO);
     }
 }
